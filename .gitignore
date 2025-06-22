@@ -1,0 +1,7 @@
+# Ignore Access DB files
+*.ars/
+*.ARS/
+*.mdb/
+*.accdb
+.venv/
+.test
