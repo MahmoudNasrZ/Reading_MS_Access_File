@@ -2,12 +2,13 @@ import subprocess
 import os
 import requests
 import atexit
+from datetime import datetime
 
 # === CONFIGURATION ===
 source = "https://arsdev.s3.us-west-1.amazonaws.com/2015-004.ars"
 # source = "./temp_downloaded.ars"
 
-db_path = "temp_downloaded.ars" if source.startswith("http") else source
+db_path = f"temp_downloaded_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.ars"  if source.startswith("http") else source
 
 
 # === DOWNLOAD FILE IF NEEDED ===
@@ -76,7 +77,7 @@ def read_logs(table_name):
         lines = result.stdout.strip().splitlines()
         for line in lines:
             print(line)
-            write_log("logs.txt", line)
+            write_log(f"logs_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt", line)
         return f"{len(lines)} rows read."
     except subprocess.CalledProcessError as e:
         print(f"Error reading table '{table_name}':", e.stderr)
