@@ -5,7 +5,7 @@ import atexit
 from datetime import datetime
 
 # === CONFIGURATION ===
-source = "https://arsdev.s3.us-west-1.amazonaws.com/2015-004.ars"
+source = input("Enter the source file path or URL (Example: https://arsdev.s3.us-west-1.amazonaws.com/2015-004.ars): ") 
 # source = "./temp_downloaded.ars"
 
 db_path = f"temp_downloaded_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.ars"  if source.startswith("http") else source
